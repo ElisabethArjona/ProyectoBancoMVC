@@ -1,13 +1,16 @@
 package com.babel.mvc.controllers;
 
 import com.babel.mvc.model.Cliente;
+import com.babel.mvc.model.Sucursal;
 import com.babel.mvc.service.IClienteService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@RestController
-@RequestMapping(value = "/clientes")
+@Controller
+@RequestMapping(value = "/cliente")
 public class ClienteController {
     private final IClienteService clienteService;
 
@@ -15,9 +18,10 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-    @GetMapping(value = "/listar")
-    public ArrayList<Cliente> listarClientes(){
-        return new ArrayList<>(clienteService.listarClientes().values());
+    @GetMapping
+    public void cliente(Model model){
+        ArrayList<Cliente> clientes = new ArrayList<>(clienteService.listarClientes().values());
+        model.addAttribute("clientes",clientes);
     }
 
     @GetMapping(value = "/{id}")
@@ -36,8 +40,9 @@ public class ClienteController {
     }
 
     @PostMapping
-    public boolean addCliente(@RequestBody Cliente cliente){
-        return clienteService.altaCliente(cliente);
+    public String addCliente(@ModelAttribute("cliente") Cliente cliente, Model model){
+        clienteService.altaCliente(cliente);
+        return "redirect:/cliente";
     }
 
     @PutMapping(value = "/{id}")

@@ -2,12 +2,13 @@ package com.babel.mvc.controllers;
 
 import com.babel.mvc.model.Sucursal;
 import com.babel.mvc.service.ISucursalesService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@RestController
+@Controller
 @RequestMapping(value = "/sucursal")
 public class SucursalController {
 
@@ -18,7 +19,7 @@ public class SucursalController {
     }
 
     @GetMapping
-    public void sucursales(Model model){
+    public void sucursal(Model model){
         ArrayList<Sucursal> sucursales = new ArrayList<>(sucursalesService.listarSucursales().values());
         model.addAttribute("sucursales",sucursales);
     }
