@@ -2,12 +2,13 @@ package com.babel.mvc.controllers;
 
 import com.babel.mvc.model.Sucursal;
 import com.babel.mvc.service.ISucursalesService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@RestController
+@Controller
 @RequestMapping(value = "/sucursal")
 public class SucursalController {
 
@@ -18,7 +19,7 @@ public class SucursalController {
     }
 
     @GetMapping
-    public void sucursales(Model model){
+    public void sucursal(Model model){
         ArrayList<Sucursal> sucursales = new ArrayList<>(sucursalesService.listarSucursales().values());
         model.addAttribute("sucursales",sucursales);
     }
@@ -39,13 +40,14 @@ public class SucursalController {
     public String detallesSucursal(@PathVariable("idSucursal") int id, Model model){
         Sucursal sucursal = sucursalesService.listarSucursales().get(id);
         model.addAttribute("sucursal",sucursal);
-
         return "sucursalDetalles";
     }
 
-    @PutMapping(value = "/{idSucursal}")
-    public boolean modificarSucursal(@PathVariable int idSucursal, @RequestBody Sucursal sucursal){
-        return sucursalesService.modificarSucursal(idSucursal,sucursal);
+    @PostMapping(value = "/{idSucursal}")
+    public String modificarSucursal(@PathVariable("idSucursal") int idSucursal, @ModelAttribute("sucursal") Sucursal sucursal, Model model){
+        sucursal.setId(idSucursal);
+        sucursalesService.modificarSucursal(idSucursal,sucursal);
+        return "redirect:/sucursal";
     }
 
 
