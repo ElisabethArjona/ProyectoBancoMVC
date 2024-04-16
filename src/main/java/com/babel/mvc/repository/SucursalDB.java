@@ -18,18 +18,14 @@ public class SucursalDB implements ISucursalDB {
 
     @Override
     public boolean altaSucursal(Sucursal sucursal) {
-        if (listaSucursales.put(sucursal.getId(),sucursal) != null){
-            return true;
-        }
-        return false;
+        listaSucursales.put(sucursal.getId(),sucursal);
+        return true;
     }
 
     @Override
     public boolean modificarSucursal(int idSucursal, Sucursal sucursal) {
-        if (listaSucursales.replace(idSucursal,sucursal) != null){
-            return true;
-        }
-        return false;
+        listaSucursales.replace(idSucursal,sucursal);
+        return true;
     }
 
     @Override
