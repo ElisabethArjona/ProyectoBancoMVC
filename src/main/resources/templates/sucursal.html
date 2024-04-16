@@ -6,6 +6,16 @@
     <title>Lista de Sucursales</title>
     <style>
         table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
           width: 100%;
           border-collapse: collapse;
         }
@@ -54,6 +64,9 @@
 <form th:action="@{/sucursal}" method="post">
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" required>
+    <br>
+    <label for="director">Director:</label>
+    <input type="text" id="director" name="director" required>
     <br>
     <label for="direccion">Direccion:</label>
     <input type="text" id="direccion" name="direccion" required>

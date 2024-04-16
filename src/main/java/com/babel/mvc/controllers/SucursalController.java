@@ -40,13 +40,14 @@ public class SucursalController {
     public String detallesSucursal(@PathVariable("idSucursal") int id, Model model){
         Sucursal sucursal = sucursalesService.listarSucursales().get(id);
         model.addAttribute("sucursal",sucursal);
-
         return "sucursalDetalles";
     }
 
-    @PutMapping(value = "/{idSucursal}")
-    public boolean modificarSucursal(@PathVariable int idSucursal, @RequestBody Sucursal sucursal){
-        return sucursalesService.modificarSucursal(idSucursal,sucursal);
+    @PostMapping(value = "/{idSucursal}")
+    public String modificarSucursal(@PathVariable("idSucursal") int idSucursal, @ModelAttribute("sucursal") Sucursal sucursal, Model model){
+        sucursal.setId(idSucursal);
+        sucursalesService.modificarSucursal(idSucursal,sucursal);
+        return "redirect:/sucursal";
     }
 
 
