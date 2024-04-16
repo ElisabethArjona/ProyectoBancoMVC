@@ -1,10 +1,12 @@
 package com.babel.mvc.service;
 
 import com.babel.mvc.model.Cliente;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class ClienteService implements IClienteService {
     private final Map<Integer, Cliente> clientes = new HashMap<>();
     private int proximoId = 1;
