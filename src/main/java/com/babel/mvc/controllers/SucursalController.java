@@ -30,9 +30,9 @@ public class SucursalController {
         return "redirect:/sucursal";
     }
 
-    @DeleteMapping()
-    public String eliminarSucursal(@ModelAttribute("sucursal") int idSucursal, Model model){
-        sucursalesService.borrarSucursal(idSucursal);
+    @PostMapping("/{id}/delete")
+    public String eliminarSucursal(@PathVariable("id") Integer id , Model model) {
+        sucursalesService.borrarSucursal(id);
         return "redirect:/sucursal";
     }
 
@@ -47,7 +47,7 @@ public class SucursalController {
     public String modificarSucursal(@PathVariable("idSucursal") int idSucursal, @ModelAttribute("sucursal") Sucursal sucursal, Model model){
         sucursal.setId(idSucursal);
         sucursalesService.modificarSucursal(idSucursal,sucursal);
-        return "redirect:/sucursal";
+        return "redirect:/sucursal/{idSucursal}";
     }
 
 
