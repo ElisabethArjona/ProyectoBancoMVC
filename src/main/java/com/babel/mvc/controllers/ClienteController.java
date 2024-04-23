@@ -57,8 +57,9 @@ public class ClienteController {
         return clienteService.modificarCliente(id, cliente);
     }
 
-    @DeleteMapping(value = "/{id}")
-    public boolean eliminarCliente(@PathVariable int id){
-        return clienteService.borrarCliente(id);
+    @PostMapping(value = "/delete/{id}")
+    public String eliminarCliente(@PathVariable("id") int id, Model model){
+        clienteService.borrarCliente(id);
+        return "redirect:/cliente";
     }
 }

@@ -51,5 +51,9 @@
     <br>
     <button type="submit">Agregar Cliente</button>
 </form>
+<h2>Eliminar Cliente</h2>
+<form th:action="@{/cliente/delete/} + ${cliente.id}" method="post">
+    <button type="submit">Eliminar</button>
+</form>
 </body>
 </html>
