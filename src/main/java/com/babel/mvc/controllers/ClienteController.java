@@ -24,17 +24,17 @@ public class ClienteController {
         model.addAttribute("clientes",clientes);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping("/{id}")
     public Cliente getClienteById(@PathVariable int id){
         return clienteService.obtenerClientePorId(id);
     }
 
-    @GetMapping(value = "/dni/{dni}")
+    @GetMapping("/dni/{dni}")
     public Cliente getClienteByDni(@PathVariable String dni){
         return clienteService.obtenerClientePorDni(dni);
     }
 
-    @GetMapping(value = "/email/{email}")
+    @GetMapping("/email/{email}")
     public Cliente getClienteByEmail(@PathVariable String email){
         return clienteService.obtenerClientePorEmail(email);
     }
@@ -43,6 +43,13 @@ public class ClienteController {
     public String addCliente(@ModelAttribute("cliente") Cliente cliente, Model model){
         clienteService.altaCliente(cliente);
         return "redirect:/cliente";
+    }
+
+    @GetMapping("/detalles/{id}")
+    public String clienteDetalles(@PathVariable int id, Model model){
+        Cliente cliente = clienteService.listarClientes().get(id);
+        model.addAttribute("cliente",cliente);
+        return "clienteDetalles";
     }
 
     @PutMapping(value = "/{id}")
