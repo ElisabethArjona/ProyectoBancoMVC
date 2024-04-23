@@ -22,7 +22,6 @@ public class SucursalesService implements ISucursalesService{
 
     @Override
     public boolean altaSucursal(Sucursal sucursal) {
-        sucursal.setId(sucursalDB.listarSucursales().size()+1);
         return sucursalDB.altaSucursal(sucursal);
     }
 

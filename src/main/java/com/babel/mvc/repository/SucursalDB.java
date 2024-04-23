@@ -16,8 +16,11 @@ public class SucursalDB implements ISucursalDB {
         return listaSucursales;
     }
 
+    private Integer lastID = 1;
+
     @Override
     public boolean altaSucursal(Sucursal sucursal) {
+        sucursal.setId(lastID++);
         listaSucursales.put(sucursal.getId(),sucursal);
         return true;
     }
